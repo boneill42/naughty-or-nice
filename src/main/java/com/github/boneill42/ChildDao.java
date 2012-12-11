@@ -14,7 +14,7 @@ import com.netflix.astyanax.serializers.StringSerializer;
 
 public class ChildDao extends AstyanaxDao {
     private static final Logger LOG = LoggerFactory.getLogger(ChildDao.class);
-    public static final String TABLE_NAME = "naughtyornicelist";
+    public static final String TABLE_NAME = "children";
     private static final ColumnFamily<String, String> COLUMN_FAMILY = new ColumnFamily<String, String>(TABLE_NAME,
             StringSerializer.get(), StringSerializer.get());
 
