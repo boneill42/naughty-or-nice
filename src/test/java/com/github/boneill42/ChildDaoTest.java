@@ -30,7 +30,7 @@ public class ChildDaoTest {
     }
 
     @Test
-    public void testDevilChild() throws Exception {
+    public void testReadDevilChild() throws Exception {
         ChildDao dao = new ChildDao("localhost:9160", "northpole");
         log(dao.read("the.devil"));
     }

@@ -14,9 +14,9 @@ public class ListEntryDaoTest {
     public void testWrite() throws Exception {
         ListEntryDao dao = new ListEntryDao("localhost:9160", AstyanaxDao.KEYSPACE);
         ListEntry listEntry = new ListEntry();
-        listEntry.childId = "chase.collins";
         listEntry.state = "PA";
         listEntry.zip = "19464";
+        listEntry.childId = "hank";
         dao.write("nice:USA", listEntry);
     }
 
@@ -30,7 +30,7 @@ public class ListEntryDaoTest {
     public void testFind() throws Exception {
         ListEntryDao dao = new ListEntryDao("localhost:9160", AstyanaxDao.KEYSPACE);
         log(dao.find("naughty:USA", "PA", null));
-        log(dao.find("naughty:USA", "CA", null));
+        log(dao.find("naughty:USA", "CA", "94111"));
     }
 
     public void log(ColumnList<ListEntry> columns) {

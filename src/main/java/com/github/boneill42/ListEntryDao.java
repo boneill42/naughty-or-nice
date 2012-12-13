@@ -43,9 +43,10 @@ public class ListEntryDao extends AstyanaxDao {
             throws ConnectionException {
         CompositeRangeBuilder range = ENTITY_SERIALIZER.buildRange();
         // TODO: Track issue here: (https://github.com/Netflix/astyanax/issues/80)
-        range = ENTITY_SERIALIZER.buildRange().withPrefix(state).greaterThanEquals("").lessThanEquals("99999");
-        if (zip != null) {
-            range = ENTITY_SERIALIZER.buildRange().withPrefix(zip).greaterThanEquals("").lessThanEquals("99999");
+        if (zip == null) {
+            range = ENTITY_SERIALIZER.buildRange().withPrefix(state).greaterThanEquals("").lessThanEquals("99999");
+        } else {
+            range = ENTITY_SERIALIZER.buildRange().withPrefix(state).greaterThanEquals(zip).lessThanEquals(zip);
         }
         OperationResult<ColumnList<ListEntry>> result = this.getKeyspace().prepareQuery(COLUMN_FAMILY).getKey(rowKey)
                 .withColumnRange(range).execute();
