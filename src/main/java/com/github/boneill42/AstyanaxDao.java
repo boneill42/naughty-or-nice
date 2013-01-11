@@ -29,6 +29,7 @@ public class AstyanaxDao {
                     .buildKeyspace(ThriftFamilyFactory.getInstance());
             this.astyanaxContext.start();
             this.keyspace = this.astyanaxContext.getEntity();
+           
             // test the connection
             this.keyspace.describeKeyspace();
         } catch (Throwable e) {

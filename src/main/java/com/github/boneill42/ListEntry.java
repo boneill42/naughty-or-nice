@@ -9,4 +9,6 @@ public class ListEntry {
     public String zip;
     @Component(ordinal = 2)
     public String childId;
+    @Component(ordinal = 3)
+    public String valueField;   
 }

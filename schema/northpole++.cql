@@ -23,3 +23,4 @@ insert into naughtyOrNiceList (standingByCountry, state, zip, childId) values ('
 insert into naughtyOrNiceList (standingByCountry, state, zip, childId) values ('naughty:USA', 'CA', '94222', 'dennis.menace');
 insert into naughtyOrNiceList (standingByCountry, state, zip, childId) values ('naughty:USA', 'PA', '18964', 'michael.myers');
 
+UPDATE children SET toys = toys + {'legos'}  WHERE childId = 'owen.oneill';

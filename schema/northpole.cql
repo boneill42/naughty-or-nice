@@ -1,3 +1,4 @@
+drop keyspace northpole;
 
 create keyspace northpole WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};
 
