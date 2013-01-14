@@ -1,8 +1,6 @@
 package com.github.boneill42.cql;
 
-import static com.datastax.driver.core.utils.querybuilder.Assignment.add;
-import static com.datastax.driver.core.utils.querybuilder.Clause.eq;
-import static com.datastax.driver.core.utils.querybuilder.QueryBuilder.update;
+import static com.datastax.driver.core.querybuilder.QueryBuilder.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.NoHostAvailableException;
-import com.datastax.driver.core.utils.querybuilder.Update;
+import com.datastax.driver.core.Query;
 
 public class ChildCqlDao {
     private static final Logger LOG = LoggerFactory.getLogger(ChildCqlDao.class);
@@ -32,7 +30,7 @@ public class ChildCqlDao {
 
     public void addToy(String childId, String toy) throws NoHostAvailableException {
         String query = "UPDATE northpole.children SET toys = toys + {'" + toy + "'} WHERE childid = '" + childId + "'";
-        Update update = update(KEYSPACE, TABLE).set(add("toys", toy)).where(eq("childId", childId));
+        Query update = update(KEYSPACE, TABLE).with(add("toys", toy)).where(eq("childId", childId));
         LOG.debug("Raw [" + query + "]");
         LOG.debug("QueryBuilder [" + update.toString() + "]");
         session.execute(update);
