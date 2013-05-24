@@ -29,9 +29,9 @@ public class ChildCqlDao {
     }
 
     public void addToy(String childId, String toy) throws NoHostAvailableException {
-        String query = "UPDATE northpole.children SET toys = toys + {'" + toy + "'} WHERE childid = '" + childId + "'";
+//        String query = "UPDATE northpole.children SET toys = toys + {'" + toy + "'} WHERE childid = '" + childId + "'";
         Query update = update(KEYSPACE, TABLE).with(add("toys", toy)).where(eq("childId", childId));
-        LOG.debug("Raw [" + query + "]");
+//        LOG.debug("Raw [" + query + "]");
         LOG.debug("QueryBuilder [" + update.toString() + "]");
         session.execute(update);
     }
